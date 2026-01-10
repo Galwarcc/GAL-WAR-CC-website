@@ -1,0 +1,162 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Dota 2 Dark Fantasy Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 69, 0, 0.8), 0 0 60px rgba(255, 107, 53, 0.6);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Card Hover Effects */
+.dota-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+  border: 1px solid rgba(255, 69, 0, 0.2);
+}
+
+.dota-card:hover {
+  transform: scale(1.05);
+  border-color: rgba(255, 69, 0, 0.6);
+  box-shadow: 0 0 30px rgba(255, 69, 0, 0.5);
+}
+
+.dota-card:hover .card-image {
+  transform: scale(1.1);
+}
+
+.card-image {
+  transition: transform 0.5s ease-out;
+}
+
+/* Gradient Text */
+.gradient-text-dota {
+  background: linear-gradient(135deg, #FFB800, #FF4500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Section Dividers */
+.section-divider {
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FF4500, transparent);
+  margin: 2rem auto;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Utility Classes */
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Button Glow */
+.btn-glow {
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(255, 69, 0, 0.7);
+}
+
+/* Text Shadow Effects */
+.text-shadow-glow {
+  text-shadow: 0 0 20px rgba(255, 184, 0, 0.8);
+}
+
+.text-shadow-red {
+  text-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+}
+
+/* Background Patterns */
+.texture-overlay {
+  position: relative;
+}
+
+.texture-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 69, 0, 0.03) 0px,
+      transparent 1px,
+      transparent 2px,
+      rgba(255, 69, 0, 0.03) 3px
+    );
+  pointer-events: none;
+}
+
+/* Bento Grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Image Gradients for Readability */
+.image-gradient-bottom {
+  position: relative;
+}
+
+.image-gradient-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(16, 18, 21, 1), transparent);
+  pointer-events: none;
+}
+
+/* Fog Effect Helper */
+.fog-overlay {
+  background: linear-gradient(to bottom, transparent 0%, rgba(16, 18, 21, 0.8) 50%, rgba(16, 18, 21, 1) 100%);
+}
