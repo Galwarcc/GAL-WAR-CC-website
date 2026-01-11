@@ -225,8 +225,8 @@ const MapWorld = () => {
           </p>
         </div>
 
-        {/* Enhanced Planet Selector with 3D Cards */}
-        <div className="mb-8 flex flex-wrap justify-center gap-6">
+       {/* Enhanced Planet Selector with 3D Cards */}
+        <div className="mb-16 flex flex-wrap justify-center gap-6">
           {planets.map((planet) => {
             const PlanetIcon = planet.icon;
             const isSelected = selectedPlanet === planet.name;
@@ -254,7 +254,7 @@ const MapWorld = () => {
                   <div 
                     className="absolute inset-0 rounded-2xl opacity-50 animate-pulse"
                     style={{
-                      background: 'transparent',
+                      background: `linear-gradient(135deg, ${planet.color})`,
                       filter: 'blur(10px)',
                     }}
                   />
@@ -331,16 +331,16 @@ const MapWorld = () => {
                 
                 {/* Clickable Hotspots with enhanced effects */}
                 {[
-                  { area: detailedMapAreas[0], top: '23%', left: '19%' },
-                  { area: detailedMapAreas[1], top: '26%', left: '40%' },
-                  { area: detailedMapAreas[2], top: '20%', left: '60%' },
-                  { area: detailedMapAreas[3], top: '24%', left: '78%' },
-                  { area: detailedMapAreas[4], top: '48%', left: '50%' },
-                  { area: detailedMapAreas[5], top: '46%', left: '73%' },
-                  { area: detailedMapAreas[6], top: '68%', left: '28%' },
-                  { area: detailedMapAreas[7], top: '66%', left: '50%' },
-                  { area: detailedMapAreas[8], top: '70%', left: '70%' },
-                  { area: detailedMapAreas[9], top: '48%', left: '15%' },
+                  { area: detailedMapAreas[0], top: '22%', left: '19%' }, // Laboratory & Research Centre - Area I (top left quadrant)
+                  { area: detailedMapAreas[1], top: '60%', left: '16%' }, // Aerospace - Area II (top center-left)
+                  { area: detailedMapAreas[2], top: '27%', left: '73%' }, // Enforcement Grid - Area III (top center-right)
+                  { area: detailedMapAreas[3], top: '11%', left: '84%' }, // Elemental Extraction - Area IV (top right)
+                  { area: detailedMapAreas[4], top: '40%', left: '44%' }, // Techspire - Area V (dead center - Tentacle City)
+                  { area: detailedMapAreas[5], top: '71%', left: '47%' }, // Horizon Medisphere - Area VI (middle right)
+                  { area: detailedMapAreas[6], top: '77%', left: '32%' }, // Bio Farms - Area VII (bottom left)
+                  { area: detailedMapAreas[7], top: '62%', left: '65%' }, // Eco Dome Haven - EDH (bottom center)
+                  { area: detailedMapAreas[8], top: '62%', left: '88%' }, // Port/Harbor - Area IX (bottom right)
+                  { area: detailedMapAreas[9], top: '20%', left: '35%' }, // Area X - Restricted Zone (left edge, centered vertically)
                 ].map((hotspot, index) => (
                   <div
                     key={index}

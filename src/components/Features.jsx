@@ -72,15 +72,16 @@ const Features = () => {
 
           <div className="relative z-10 flex items-center justify-center">
             <div className="w-full h-[400px]">
-              <model-viewer
-                src="/models/sci_fi_compact_radar.glb"
-                alt="Terraform Device"
-                auto-rotate
-                camera-controls
-                shadow-intensity="1"
-                style={{ width: '100%', height: '100%' }}
-                className="model-viewer-custom"
-              ></model-viewer>
+              <iframe
+                src="/model-viewer.html?src=/models/terraform_device_compressed.glb"
+                title="Terraform Device"
+                style={{ 
+                  width: '100%', 
+                  height: '100%',
+                  border: 'none',
+                  background: 'transparent'
+                }}
+              />
             </div>
           </div>
         </div>

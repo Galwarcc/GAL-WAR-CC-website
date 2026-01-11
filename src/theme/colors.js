@@ -20,14 +20,6 @@ export const colorPalettes = {
     dark: '#55553D',         // Olive Drab Camouflage - Dark sections
   },
 
-  // Palette 3: Space & Tech (Astronaut theme)
-  space: {
-    primary: '#738A9A',      // Muted Slate Blue - Primary elements
-    secondary: '#435565',    // Deep Desaturated Blue - Backgrounds
-    accent: '#CCDBE2',       // Pale Icy Blue - Highlights & hover states
-    steel: '#636D7D',        // Muted Steel Blue - Secondary elements
-    earth: '#697773',        // Desaturated Olive - Grounding elements
-  },
 
   // Palette 4: Nature & Mystical (Enchanted Forest theme)
   nature: {

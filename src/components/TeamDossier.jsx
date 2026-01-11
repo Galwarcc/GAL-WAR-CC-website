@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Mail, Phone, Users } from 'lucide-react';
 import { Card } from './ui/card';
 import StarfieldBackground from './StarfieldBackground';
+import prashanthImg from '../assets/prashanth.jpg'; 
 
 const TeamDossier = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,7 +22,8 @@ const TeamDossier = () => {
     {
       id: 2,
       name: 'Prashanth Pabbathi',
-      role: 'Co-founder & COO',
+      role: 'Co-founder',
+      image: prashanthImg, // Use the imported variable here
       email: 'yourname@domain.com',
       phone: '+91 XXXXXXXXXX',
       tagline: 'Driving strategy, operations, and execution at scale',
@@ -111,6 +113,10 @@ const TeamDossier = () => {
     setCurrentIndex((prev) => (prev - 1 + teamMembers.length) % teamMembers.length);
   };
 
+  const handleThumbnailClick = (index) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <section id="team" className="relative min-h-screen py-12 px-6" style={{
       background: 'transparent',
@@ -157,7 +163,7 @@ const TeamDossier = () => {
         </div>
 
         {/* Dossier Layout */}
-        <div className="grid lg:grid-cols-5 gap-8 mb-12">
+        <div className="grid lg:grid-cols-5 gap-8 mb-8">
           {/* Left Side - Profile Card */}
           <div className="lg:col-span-2">
             <Card className="relative overflow-hidden p-8" style={{
@@ -166,27 +172,30 @@ const TeamDossier = () => {
               boxShadow: '0 0 30px rgba(165, 146, 209, 0.2)',
               backdropFilter: 'blur(10px)',
             }}>
-              {/* Profile Image Placeholder */}
-              <div className="relative mb-6">
-                <div className="aspect-square w-full rounded-lg overflow-hidden" style={{
-                  background: 'transparent',
-                  border: '3px solid #A592D1',
-                  boxShadow: '0 0 20px rgba(165, 146, 209, 0.4)',
-                }}>
-                  <div className="w-full h-full flex items-center justify-center">
+              {/* Profile Image Container */}
+              <div className="aspect-square w-full rounded-lg overflow-hidden" style={{
+                background: 'transparent',
+                border: '3px solid #A592D1',
+                boxShadow: '0 0 20px rgba(165, 146, 209, 0.4)',
+              }}>
+                <div className="w-full h-full flex items-center justify-center">
+                  {/* Check if currentMember has an image property */}
+                  {currentMember.image ? (
+                    <img 
+                      src={currentMember.image} 
+                      alt={currentMember.name} 
+                      className="w-full h-full object-cover transition-opacity duration-500" 
+                    />
+                  ) : (
+                    /* Fallback to placeholder if no image exists */
                     <div className="text-center">
                       <Users className="w-24 h-24 mx-auto mb-4" style={{ color: '#B9D6E8', opacity: 0.5 }} />
                       <p className="text-body-small uppercase tracking-wider" style={{ color: '#B9D6E8', opacity: 0.7 }}>
                         Profile Image
                       </p>
                     </div>
-                  </div>
+                  )}
                 </div>
-                {/* Corner decorations */}
-                <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2" style={{ borderColor: '#A592D1' }} />
-                <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2" style={{ borderColor: '#A592D1' }} />
-                <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2" style={{ borderColor: '#A592D1' }} />
-                <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2" style={{ borderColor: '#A592D1' }} />
               </div>
 
               {/* Profile Details */}
@@ -250,7 +259,7 @@ const TeamDossier = () => {
           {/* Right Side - Dossier Book */}
           <div className="lg:col-span-3">
             <div className="relative" style={{
-              height: '600px',
+              height: '550px',
             }}>
               {/* Book/Dossier */}
               <div className="absolute inset-0 rounded-lg overflow-hidden" style={{
@@ -314,9 +323,10 @@ const TeamDossier = () => {
         </div>
 
         {/* Navigation Controls */}
-        <div className="flex justify-center items-center gap-8">
+        <div className="flex justify-center items-center gap-8 mb-8">
           <button
             onClick={handlePrevious}
+            data-testid="team-prev-btn"
             className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105"
             style={{
               background: 'rgba(165, 146, 209, 0.2)',
@@ -338,13 +348,14 @@ const TeamDossier = () => {
           </button>
 
           <div className="text-center">
-            <p className="text-body-small uppercase tracking-wider" style={{ color: '#B9D6E8' }}>
+            <p className="text-body-small uppercase tracking-wider" style={{ color: '#B9D6E8' }} data-testid="member-count">
               Member {currentIndex + 1} of {teamMembers.length}
             </p>
           </div>
 
           <button
             onClick={handleNext}
+            data-testid="team-next-btn"
             className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105"
             style={{
               background: 'rgba(165, 146, 209, 0.2)',
@@ -364,6 +375,89 @@ const TeamDossier = () => {
             Next
             <ChevronRight className="w-5 h-5" />
           </button>
+        </div>
+
+        {/* Thumbnail Gallery */}
+        {/* Thumbnail Gallery */}
+        <div className="mt-6">
+          <div className="flex justify-center gap-4 flex-wrap">
+            {teamMembers.map((member, index) => (
+              <button
+                key={member.id}
+                onClick={() => handleThumbnailClick(index)}
+                className="relative group transition-all duration-300"
+                style={{
+                  transform: currentIndex === index ? 'scale(1.05)' : 'scale(1)',
+                }}
+              >
+                {/* Thumbnail Card */}
+                <div 
+                  className="w-28 h-36 rounded-lg overflow-hidden flex flex-col items-center justify-center p-3 transition-all duration-300"
+                  style={{
+                    background: currentIndex === index 
+                      ? 'rgba(165, 146, 209, 0.3)' 
+                      : 'rgba(64, 76, 86, 0.6)',
+                    border: currentIndex === index 
+                      ? '3px solid #A592D1' 
+                      : '2px solid rgba(165, 146, 209, 0.2)',
+                    boxShadow: currentIndex === index 
+                      ? '0 0 25px rgba(165, 146, 209, 0.5)' 
+                      : 'none',
+                  }}
+                >
+                  {/* Profile Icon / Image Logic */}
+                  <div 
+                    className="w-14 h-14 rounded-full flex items-center justify-center mb-2 overflow-hidden"
+                    style={{
+                      background: currentIndex === index 
+                        ? 'rgba(165, 146, 209, 0.3)' 
+                        : 'rgba(185, 214, 232, 0.1)',
+                      border: currentIndex === index 
+                        ? '2px solid #A592D1' 
+                        : '1px solid rgba(185, 214, 232, 0.3)',
+                    }}
+                  >
+                    {/* If member has an image, show it; otherwise show the Users icon */}
+                    {member.image ? (
+                      <img 
+                        src={member.image} 
+                        alt={member.name} 
+                        className="w-full h-full object-cover" 
+                      />
+                    ) : (
+                      <Users 
+                        className="w-6 h-6" 
+                        style={{ 
+                          color: currentIndex === index ? '#A592D1' : '#B9D6E8',
+                          opacity: currentIndex === index ? 1 : 0.6,
+                        }} 
+                      />
+                    )}
+                  </div>
+                  
+                  {/* Person Label */}
+                  <p 
+                    className="text-xs text-center font-medium leading-tight"
+                    style={{ 
+                      color: currentIndex === index ? '#A592D1' : '#B9D6E8',
+                      opacity: currentIndex === index ? 1 : 0.7,
+                    }}
+                  >
+                    {/* Optional: Show actual name if you prefer, or keep the generic label */}
+                    {member.image ? member.name.split(' ')[0] : 'Person'}<br/>Image
+                  </p>
+                </div>
+
+                {/* Active Indicator Dot */}
+                {currentIndex === index && (
+                  <div 
+                    className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full"
+                    style={{ background: '#A592D1', boxShadow: '0 0 10px #A592D1' }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>
